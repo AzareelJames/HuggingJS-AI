@@ -1,0 +1,54 @@
+body{
+    background-color: rgb(20, 20, 20);
+}
+
+
+
+#inp{
+    color: black;
+    font: bold;
+    
+    width: 25em;
+    height: 35px;
+    font-size: 30px;
+    margin-left: 5%;
+    margin-top: 60%;
+}
+
+button{cursor: pointer;}
+#ask{
+    font-size: 2em;
+    background-color: white;
+    animation: towhite 1s forwards ease;
+}
+#ask:hover{
+    animation: togreen 1s forwards ease;
+}
+
+
+@keyframes togreen{
+    0%{background-color: white;}
+    100%{background-color: lime;}
+}
+@keyframes towhite{
+    0%{background-color: lime;}
+    100%{background-color: white;}
+}
+
+#prompt{
+    background-color: black;
+    color: white;
+    border: 5px solid black;
+
+    height: 30em;
+
+    overflow-y: scroll;
+
+    margin-top: -50%;
+}
+
+#title{
+    color: white;
+    font-size: 4.5em;
+    margin-left: 31%;
+}

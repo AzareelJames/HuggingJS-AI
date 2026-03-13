@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuggingJS AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png">
+</head>
+<body>
+    <h1 id="title">HuggingJS AI</h1>
+
+    <input type="text" id="inp" placeholder="Ask Anything!"
+    autocomplete="off" spellcheck="true">
+    <button id="ask" onclick="
+    const inp = document.getElementById('inp').value.trim();
+    const pr = document.getElementById('prompt');
+
+
+
+    if(inp){
+        ASK.disabled = true;
+        pr.innerHTML += `<br>[You]<br><span style='color: orange;'>${inp}</span>`
+        pr.innerHTML += '<br>[Loading...]';
+
+        start = Date.now()
+        const ai = ask(inp).then(result => {
+            the_prompt = String(JSON.parse(result)['choices'][0]
+            ['message']['content']).trim().replace('\n', '<br>');
+
+            pr.innerHTML += `<br>[HuggingJS]<br><span style='color: orange;'>${the_prompt}</span><br>
+            <p>(${the_prompt.length / ((Date.now() - start)/1000)} characters per second, ${the_prompt.length} Characters, ${(Date.now() - start)/1000} Seconds)</p>`;
+            ASK.disabled = false;
+        });
+    }
+    ">ASK</button>
+
+
+
+
+    <div id="prompt">
+        [HuggingJS]
+        <br>
+        Hello, what's on your mind?
+                               
+    </div>
+
+
+    <script src="script.js" defer></script>
+</body>
+</html>
