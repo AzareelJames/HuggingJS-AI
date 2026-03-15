@@ -1,5 +1,5 @@
 const _inp = document.getElementById('inp');
-const ASK = document.getElementById('ask')
+const ASK = document.getElementById('ask');
 
 _inp.addEventListener('keydown', event => {
     if(event.key === 'Enter'){
@@ -12,15 +12,16 @@ _inp.addEventListener('keydown', event => {
 
 
 async function query(data) {
-    const base32 = 'aGZfeE93QWFuUE9iUVJFRURxVVNtdkxTSWdpVlFRT0NZS0xRRQ==' 
-    // This code is for youtube video.
-    const binaryString = atob(base32);
-    const utf8Bytes = Uint8Array.from(binaryString, (m) => m.codePointAt(0));
+	if(localStorage.getItem('API') === null){
+		localStorage.setItem('API', prompt('Please Enter Hugging Face API:'));
+	}
+
+	
 	const response = await fetch(
 		"https://router.huggingface.co/v1/chat/completions",
 		{
 			headers: {
-				Authorization: `Bearer ${new TextDecoder().decode(utf8Bytes)}`,
+				Authorization: `Bearer ${localStorage.getItem('API')}`,
 				"Content-Type": "application/json",
 			},
 			method: "POST",
